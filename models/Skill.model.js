@@ -4,7 +4,7 @@ const { Schema, model } = require("mongoose");
 const skillSchema = new Schema({
   teacherId: {
     type: Schema.Types.ObjectId,
-    ref: "User",
+    ref: "Skill",
   },
   title: {
     type: String,
