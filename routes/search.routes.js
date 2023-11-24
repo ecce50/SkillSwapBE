@@ -1,18 +1,33 @@
 const router = require("express").Router();
-const Skill = require("../models/Skill.model"); // Make sure to import your Skill model or use it as needed
+const Skill = require("../models/Skill.model");
+const Class = require("../models/Class.model");
 
-router.get("/skill", async (req, res) => {
+router.get("/", async (req, res) => {
   const query = req.query.title;
- console.log("Original Query:", query);
+  const filter = req.query.filter;
+
   try {
-    console.log("Original Query:", query);
-    console.log("MongoDB Query:", { title: new RegExp(query, "i") });
-    const results = await Skill.find({ title: new RegExp(query, "i") });
+    // Search both databases and retrieve results
+    const skillResults = await Skill.find({ title: new RegExp(query, "i") });
+    const classResults = await Class.find({ title: new RegExp(query, "i") });
+
+    // Combine and filter the results based on the provided filter
+    let results = [];
+
+    if (filter === "skill") {
+      results = skillResults;
+    } else if (filter === "class") {
+      results = classResults;
+    } else {
+      // Default: Search both databases and combine the results
+      results = [...skillResults, ...classResults];
+    }
+
     res.json(results);
-    console.log("These are the skill results: ", results);
   } catch (error) {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
+
 
 module.exports = router;
