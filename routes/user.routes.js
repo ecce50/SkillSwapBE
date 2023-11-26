@@ -6,7 +6,7 @@ const { isAuthenticated } = require("../middlewares/jwt.middleware");
 //Add Skill to User
 
 router.put("/add-skill", isAuthenticated, async (req, res) => {
- const userId = req.payload.userId;
+ const userId = req.user.userId;
   const { skillId } = req.body;
 
   try {

@@ -59,8 +59,8 @@ router.post("/login", async (req, res) => {
 /* GET route to verify the JWT */
 
 router.get("/verify", isAuthenticated, async (req, res) => {
-  console.log("here is after the middleware, what JWT is giving us", req.payload);
-  const currentUser = await User.findById(req.payload.userId)
+  console.log("here is after the middleware, what JWT is giving us", req.user);
+  const currentUser = await User.findById(req.user.userId)
   currentUser.password = "*******"
   res.json({ message: 'Token is valid: ', currentUser });
 });
