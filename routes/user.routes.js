@@ -5,13 +5,13 @@ const { isAuthenticated } = require("../middlewares/jwt.middleware");
 
 //Add Skill to User
 
-router.put("/:_id/add-skill", isAuthenticated, async (req, res) => {
-  const { _id } = req.params;
+router.put("/add-skill", isAuthenticated, async (req, res) => {
+ const userId = req.payload.userId;
   const { skillId } = req.body;
 
   try {
     const user = await User.findByIdAndUpdate(
-      _id,
+      userId,
       { $push: { skills: skillId } },
       { new: true }
     );
