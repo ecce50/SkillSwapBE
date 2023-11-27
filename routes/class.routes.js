@@ -8,14 +8,18 @@ router.post("/class-creation", isAuthenticated, async (req, res) => {
   const payload = req.body; // { email: 'someEmail', password '1234'}
 
   try {
-    await Class.create({ title: payload.title });
-    res.status(201).json({ message: "Class created" });
+    const userId = req.user.userId;
+        console.log("req.user.id at class creation: ", userId);
+    const createdClass = await Class.create({
+      title: payload.title,
+      teacherId: userId,
+      description: payload.description,
+    });
+    res.status(201).json({ message: "Class created", class: createdClass });
   } catch (error) {
     console.log(error);
     res.status(500).json(error);
   }
 });
-
-
 
 module.exports = router;

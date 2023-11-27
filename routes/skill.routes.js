@@ -22,4 +22,18 @@ router.post("/skill-creation", isAuthenticated, async (req, res) => {
   }
 });
 
+// GET route to fetch skills by teacherId
+router.get("/skills", isAuthenticated, async (req, res) => {
+  try {
+    const userId = req.user.userId;
+    const skills = await Skill.find({ teacherId: userId });
+    console.log("Skills:", skills); // Log the skills array
+    res.header("Content-Type", "application/json");
+    res.status(200).json({ skills });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 module.exports = router;
