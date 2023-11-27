@@ -4,14 +4,13 @@ const { expressjwt } = require("express-jwt");
 const isAuthenticated = expressjwt({
   secret: process.env.TOKEN_SECRET,
   algorithms: ["HS256"],
-  requestProperty: 'payload',
+  requestProperty: 'user',
   getToken: getTokenFromHeaders,
 });
 
 // Function used to extracts the JWT token from the request's 'Authorization' Headers
 function getTokenFromHeaders(req) {
-  // Check if the token is available on the request Headers
-  //"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGNhMzVkNDUzY2IzYzJlMTU3NTBkOTUiLCJpYXQiOjE2OTA5Nzg0MDUsImV4cCI6MTY5MTAwMDAwNX0.JIEW6x1ZSBiAdpNhxyB5O9Y2S68bl38fvxGfM3Bp3NU"
+  
   if (
     req.headers.authorization &&
     req.headers.authorization.split(" ")[0] === "Bearer"
