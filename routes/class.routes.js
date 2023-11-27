@@ -5,7 +5,7 @@ const { isAuthenticated } = require("../middlewares/jwt.middleware");
 /* POST route to class creation */
 
 router.post("/class-creation", isAuthenticated, async (req, res) => {
-  const payload = req.body; // { email: 'someEmail', password '1234'}
+  const payload = req.body;
 
   try {
     const userId = req.user.userId;
@@ -14,6 +14,7 @@ router.post("/class-creation", isAuthenticated, async (req, res) => {
       title: payload.title,
       teacherId: userId,
       description: payload.description,
+      skillId: payload.skillId,
     });
     res.status(201).json({ message: "Class created", class: createdClass });
   } catch (error) {
