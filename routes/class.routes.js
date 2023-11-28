@@ -2,7 +2,7 @@ const router = require("express").Router();
 const Class = require("../models/Class.model");
 const { isAuthenticated } = require("../middlewares/jwt.middleware");
 
-/* POST route to class creation */
+/*------------------------------------ POST route to Class creation ---------------------------------------------*/
 
 router.post("/class-creation", isAuthenticated, async (req, res) => {
   const payload = req.body;
@@ -24,7 +24,7 @@ router.post("/class-creation", isAuthenticated, async (req, res) => {
 });
 
 
-/* GET route to fetch classes for a specific skill */
+/*-------------------------------- GET route to fetch classes for a specific skill --------------------------------------*/
 router.get("/teacher-classes", isAuthenticated, async (req, res) => {
   try {
     const skillId = req.query.skill_id;

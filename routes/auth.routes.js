@@ -8,7 +8,7 @@ router.get("/", (req, res, next) => {
   res.json("All good in here");
 });
 
-/* POST route to signup */
+/*---------------------------------------- POST route to SIGNUP ---------------------------------------------------*/
 
 router.post("/signup", async (req, res) => {
   const payload = req.body; // { email: 'someEmail', password '1234'}
@@ -25,7 +25,7 @@ router.post("/signup", async (req, res) => {
   }
 });
 
-/* POST route to login */
+/*------------------------------------------------ POST route to LOGIN --------------------------------------------------*/
 router.post("/login", async (req, res) => {
   const payload = req.body; // { email: 'someEmail', password '1234'}
   /* Check if the user exists */
@@ -56,7 +56,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
-/* GET route to verify the JWT */
+/*----------------------------------------- GET route to verify the JWT -------------------------------------------------*/
 
 router.get("/verify", isAuthenticated, async (req, res) => {
   console.log("here is after the middleware, what JWT is giving us", req.user);

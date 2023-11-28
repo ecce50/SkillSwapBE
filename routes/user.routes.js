@@ -3,7 +3,7 @@ const router = require("express").Router();
 const User = require("../models/User.model");
 const { isAuthenticated } = require("../middlewares/jwt.middleware");
 
-//Add Skill to User
+/*--------------------------------------------- Add Skill to User --------------------------------------------------*/
 
 router.put("/add-skill", isAuthenticated, async (req, res) => {
  const userId = req.user.userId;

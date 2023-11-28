@@ -1,6 +1,5 @@
 const { Schema, model } = require("mongoose");
 
-// TODO: Please make sure you edit the User model to whatever makes sense in this case
 const classSchema = new Schema({
   teacherId: {
     type: Schema.Types.ObjectId,
@@ -15,6 +14,12 @@ const classSchema = new Schema({
     // required: true,
     trim: true,
   },
+  duration: {
+    type: Number,
+  },
+  location: {
+    type: String,
+  }, //GeoJSON for when we add location functionality
   description: {
     type: String,
     // required: true,
