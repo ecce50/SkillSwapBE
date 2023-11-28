@@ -21,11 +21,14 @@ require("./config")(app);
 const indexRoutes = require("./routes/index.routes");
 app.use("/api", indexRoutes);
 
-const searchRoutes = require("./routes/search.routes");
-app.use("/search", searchRoutes);
-
 const authRoutes = require("./routes/auth.routes");
 app.use("/auth", authRoutes);
+
+const userRoutes = require("./routes/user.routes");
+app.use("/user", userRoutes);
+
+const searchRoutes = require("./routes/search.routes");
+app.use("/search", searchRoutes);
 
 const skillRoutes = require("./routes/skill.routes");
 app.use("/skill", skillRoutes);
@@ -33,9 +36,8 @@ app.use("/skill", skillRoutes);
 const classRoutes = require("./routes/class.routes");
 app.use("/class", classRoutes);
 
-
-const userRoutes = require("./routes/user.routes");
-app.use("/user", userRoutes);
+const sessionRoutes = require("./routes/session.routes");
+app.use("/session", sessionRoutes);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);

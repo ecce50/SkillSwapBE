@@ -2,7 +2,7 @@ const router = require("express").Router();
 const Skill = require("../models/Skill.model");
 const { isAuthenticated } = require("../middlewares/jwt.middleware");
 
-/* POST route to skill creation */
+/*--------------------------------------- POST route to skill creation --------------------------------------------*/
 
 router.post("/skill-creation", isAuthenticated, async (req, res) => {
   const payload = req.body; // { email: 'someEmail', password '1234'}
@@ -22,7 +22,7 @@ router.post("/skill-creation", isAuthenticated, async (req, res) => {
   }
 });
 
-// GET route to fetch skills by teacherId
+/*------------------------------------------ GET route to fetch skills by teacherId -------------------------------------*/
 router.get("/skills", isAuthenticated, async (req, res) => {
   try {
     const userId = req.user.userId;
