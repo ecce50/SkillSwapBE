@@ -5,6 +5,10 @@ const classSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
   },
+  source: {
+    type: String,
+    default: "class",
+  }, 
   skillId: {
     type: Schema.Types.ObjectId,
     ref: "Skill",
