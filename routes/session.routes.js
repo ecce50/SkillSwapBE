@@ -21,6 +21,9 @@ try {
         pointsCost: payload.pointsCost,
         classId: payload.classId,
     });
+
+    console.log("Session created", createSession);
+
     res.status(201).json({ message: "Session created", session: createSession });
 
 } catch (error) {
