@@ -1,11 +1,11 @@
 const router = require ("express").Router();
 const Session = require ("../models/Session.model");
-const {isAuthenticated} = require ("../middlewares/jwt.middleware");
+const {authenticateUser} = require ("../middlewares/jwt.middleware");
 
 
 /*------------------------------------ POST route to Session creation ---------------------------------------------*/
 
-router.post ("/session-creation", isAuthenticated, async (req, res) => {
+router.post ("/session-creation", authenticateUser, async (req, res) => {
 
 const payload = req.body
 
