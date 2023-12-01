@@ -2,7 +2,7 @@ const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const User = require("../models/User.model");
 const jwt = require("jsonwebtoken");
-const { isAuthenticated } = require("../middlewares/jwt.middleware");
+const { authenticateUser } = require("../middlewares/jwt.middleware");
 
 router.get("/", (req, res, next) => {
   res.json("All good in here");
@@ -58,7 +58,7 @@ router.post("/login", async (req, res) => {
 
 /*----------------------------------------- GET route to verify the JWT -------------------------------------------------*/
 
-router.get("/verify", isAuthenticated, async (req, res) => {
+router.get("/verify", authenticateUser, async (req, res) => {
   console.log("here is after the middleware, what JWT is giving us", req.user);
   const currentUser = await User.findById(req.user.userId)
   currentUser.password = "*******"

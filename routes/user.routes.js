@@ -1,11 +1,11 @@
 const router = require("express").Router();
 // const Skill = require("../models/Skill.model");
 const User = require("../models/User.model");
-const { isAuthenticated } = require("../middlewares/jwt.middleware");
+const { authenticateUser } = require("../middlewares/jwt.middleware");
 
 /*--------------------------------------------- Add Skill to User --------------------------------------------------*/
 
-router.put("/add-skill", isAuthenticated, async (req, res) => {
+router.put("/add-skill", authenticateUser, async (req, res) => {
  const userId = req.user.userId;
   const { skillId } = req.body;
 

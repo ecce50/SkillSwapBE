@@ -1,10 +1,10 @@
 const router = require("express").Router();
 const Class = require("../models/Class.model");
-const { isAuthenticated } = require("../middlewares/jwt.middleware");
+const { authenticateUser } = require("../middlewares/jwt.middleware");
 
 /*------------------------------------ POST route to Class creation ---------------------------------------------*/
 
-router.post("/class-creation", isAuthenticated, async (req, res) => {
+router.post("/class-creation", authenticateUser, async (req, res) => {
   const payload = req.body;
 
   try {
@@ -25,7 +25,7 @@ router.post("/class-creation", isAuthenticated, async (req, res) => {
 
 
 /*-------------------------------- GET route to fetch classes for a specific skill --------------------------------------*/
-router.get("/teacher-classes", isAuthenticated, async (req, res) => {
+router.get("/teacher-classes", authenticateUser, async (req, res) => {
   try {
     const skillId = req.query.skill_id;
     console.log("THIS IS THE SKILLID FOR THE CLASSES ",skillId);
