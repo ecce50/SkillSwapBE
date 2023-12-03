@@ -39,7 +39,7 @@ router.post("/login", async (req, res) => {
         process.env.TOKEN_SECRET,
         {
           algorithm: "HS256",
-          expiresIn: "6h",
+          expiresIn: "24h",
         }
       );
       // Sending back the token to the front
@@ -59,10 +59,18 @@ router.post("/login", async (req, res) => {
 /*----------------------------------------- GET route to verify the JWT -------------------------------------------------*/
 
 router.get("/verify", authenticateUser, async (req, res) => {
-  console.log("here is after the middleware, what JWT is giving us", req.user);
-  const currentUser = await User.findById(req.user.userId)
-  currentUser.password = "*******"
-  res.json({ message: 'Token is valid: ', currentUser });
+  try {
+    console.log("Before user lookup");
+    const currentUser = await User.findById(req.user.userId);
+    console.log("After user lookup");
+    currentUser.password = "*******"; // Redacting sensitive information
+
+    console.log("Before sending response");
+    res.json({ message: "Token is valid: ", currentUser });
+  } catch (error) {
+    console.error("Error in /auth/verify route:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 });
 
 module.exports = router;
