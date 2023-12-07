@@ -25,16 +25,16 @@ router.post("/class-creation", authenticateUser, async (req, res) => {
 
 
 /*-------------------------------- GET route to fetch classes for a specific skill --------------------------------------*/
-router.get("/teacher-classes", authenticateUser, async (req, res) => {
+router.get("/classes", authenticateUser, async (req, res) => {
   try {
     const skillId = req.query.skill_id;
     console.log("THIS IS THE SKILLID FOR THE CLASSES ",skillId);
-    // Assuming you want to fetch classes based on the teacherId and skillId
-    const classes = await Class.find({
-      skillId: mongoose.Types.ObjectId(skillId),
-    });
+
+    const classes = await Class.find({skillId: skillId});
     console.log("These are the classes: ", classes);
+
     res.status(200).json({ classes: classes });
+
   } catch (error) {
     console.error("Error fetching classes:", error);
     res.status(500).json(error);
