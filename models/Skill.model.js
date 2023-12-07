@@ -5,10 +5,6 @@ const skillSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
   },
-  source: {
-    type: String,
-    default: "skill",
-  },
   title: {
     type: String,
     // required: true,

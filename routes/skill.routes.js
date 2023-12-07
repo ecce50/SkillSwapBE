@@ -22,6 +22,9 @@ router.post("/create-skill", authenticateUser, async (req, res) => {
   }
 });
 
+
+/*---------------------------------------- PUT route to skill UPDTAE ------------------------------------------------*/
+
 router.put("/update-skill/:id", authenticateUser, async (req, res) => {
   const { userId } = req.user;
   const { id } = req.params; // Extract skillId from the request parameters
@@ -48,7 +51,7 @@ router.put("/update-skill/:id", authenticateUser, async (req, res) => {
   }
 });
 
-// Delete skill route
+/*------------------------------------------- Delete skill route ---------------------------------------------------------*/
 router.delete("/delete-skill/:id", authenticateUser, async (req, res) => {
   const { userId } = req.user;
   const { id } = req.params; // Extract skillId from the request parameters
