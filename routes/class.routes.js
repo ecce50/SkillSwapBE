@@ -11,6 +11,7 @@ router.post("/class-creation", authenticateUser, async (req, res) => {
     const userId = req.user.userId;
         console.log("req.user.id at class creation: ", userId);
     const createdClass = await Class.create({
+      source: "class",
       title: payload.title,
       teacherId: userId,
       description: payload.description,

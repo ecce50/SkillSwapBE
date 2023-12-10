@@ -10,6 +10,9 @@ const skillSchema = new Schema({
     // required: true,
     trim: true,
   },
+  source: {
+    type: String,
+  },
   description: {
     type: String,
     // required: true,

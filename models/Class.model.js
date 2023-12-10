@@ -14,6 +14,9 @@ const classSchema = new Schema({
     // required: true,
     trim: true,
   },
+  source: {
+    type: String,
+  },
   duration: {
     type: Number,
   },
@@ -38,7 +41,7 @@ const classSchema = new Schema({
       },
       score: {
         type: Number,
-       // required: true,
+        // required: true,
         min: 1, // Minimum allowed value
         max: 5, // Maximum allowed value
       },
