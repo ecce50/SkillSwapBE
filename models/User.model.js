@@ -44,6 +44,9 @@ const userSchema = new Schema({
       ref: "Skill",
     },
   ],
+  source: {
+    type: String,
+  },
   messages: [
     {
       messageId: String,
