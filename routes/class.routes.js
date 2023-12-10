@@ -27,7 +27,7 @@ router.post("/class-creation", authenticateUser, async (req, res) => {
 /*-------------------------------- GET route to fetch classes for a specific skill --------------------------------------*/
 router.get("/classes", authenticateUser, async (req, res) => {
   try {
-    const skillId = req.query.skill_id;
+    const skillId = req.query.skillId;
     console.log("THIS IS THE SKILLID FOR THE CLASSES ",skillId);
 
     const classes = await Class.find({skillId: skillId});
