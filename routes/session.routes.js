@@ -32,6 +32,24 @@ try {
 }
 });
 
+/*---------------------------------GET route to fetch Sessions for a Class -------------------------------------- */
+
+router.get("/sessions", authenticateUser, async (req, res) => {
+    try {
+        const classId = req.query.classId;
+
+        const sessions = await Session.find({classId: classId});
+        console.log("These are the sessions: ", sessions);
+
+
+        res.status(200).json({ sessions: sessions });
+
+    } catch (error) {
+        console.error("Error fetching sessions:", error);
+        res.status(500).json(error);
+    }
+})
+
 
 
 
