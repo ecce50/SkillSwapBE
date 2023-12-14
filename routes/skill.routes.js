@@ -24,7 +24,7 @@ router.post("/create-skill", authenticateUser, async (req, res) => {
 });
 
 
-/*---------------------------------------- PUT route to skill UPDTAE ------------------------------------------------*/
+/*---------------------------------------- PUT route to skill UPDATE ------------------------------------------------*/
 
 router.put("/update-skill/:id", authenticateUser, async (req, res) => {
   const { userId } = req.user;
