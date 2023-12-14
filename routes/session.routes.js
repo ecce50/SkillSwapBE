@@ -16,7 +16,8 @@ try {
 
     const createSession = await Session.create({
         date: createDate,
-        time: new Date (payload.time),
+        // time: new Date (payload.time),
+        time: payload.time,
         status: payload.status,
         pointsCost: payload.pointsCost,
         classId: payload.classId,
