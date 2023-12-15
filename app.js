@@ -42,6 +42,9 @@ app.use("/class", classRoutes);
 const sessionRoutes = require("./routes/session.routes");
 app.use("/session", sessionRoutes);
 
+const reviewRoutes = require("./routes/review.routes");
+app.use("/review", reviewRoutes);
+
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
 
