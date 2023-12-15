@@ -24,7 +24,8 @@ const sessionSchema = new Schema({
   //     type: String,
   //     trim: true,
   //   },
-});
+},
+);
 
 const Session = model("Session", sessionSchema);
 
