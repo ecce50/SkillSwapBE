@@ -4,6 +4,7 @@ const User = require("../models/User.model");
 const jwt = require("jsonwebtoken");
 const { authenticateUser } = require("../middlewares/jwt.middleware");
 
+
 router.get("/", (req, res, next) => {
   res.json("All good in here");
 });
@@ -58,19 +59,39 @@ router.post("/login", async (req, res) => {
 
 /*----------------------------------------- GET route to verify the JWT -------------------------------------------------*/
 
+// router.get("/verify", authenticateUser, async (req, res) => {
+//   try {
+//     console.log("Before user lookup");
+//     const currentUser = await User.findById(req.user.userId);
+//     console.log("After user lookup");
+//     // currentUser.password = "*******"; // Redacting sensitive information
+
+//     console.log("Before sending response");
+//     res.json({ message: "Token is valid: ", currentUser });
+//   } catch (error) {
+//     console.error("Error in /auth/verify route:", error);
+//     res.status(500).json({ error: "Internal Server Error" });
+//   }
+// });
+
+
+
 router.get("/verify", authenticateUser, async (req, res) => {
   try {
-    console.log("Before user lookup");
-    const currentUser = await User.findById(req.user.userId);
-    console.log("After user lookup");
-    currentUser.password = "*******"; // Redacting sensitive information
+    // Log the received token
+    console.log("Received token:", req.headers.authorization);
 
-    console.log("Before sending response");
-    res.json({ message: "Token is valid: ", currentUser });
+    const currentUser = await User.findById(req.user.userId);
+    currentUser.password = "*******"; // Redacting sensitive information
+    res.json({ message: "Token is valid", currentUser });
   } catch (error) {
     console.error("Error in /auth/verify route:", error);
-    res.status(500).json({ error: "Internal Server Error" });
+    res
+      .status(500)
+      .json({ error: "Internal Server Error", details: error.message });
   }
 });
+
+
 
 module.exports = router;

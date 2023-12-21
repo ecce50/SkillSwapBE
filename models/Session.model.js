@@ -9,9 +9,9 @@ const sessionSchema = new Schema({
     type: Date,
   },
   time: {
-    type: Date,
+    type: String,
   },
-  status: {
+  level: {
     type: String,
     enum: ["Everyone", "Beginner", "Intermediate", "Advanced"],
     default: "Everyone",
@@ -24,7 +24,8 @@ const sessionSchema = new Schema({
   //     type: String,
   //     trim: true,
   //   },
-});
+},
+);
 
 const Session = model("Session", sessionSchema);
 
