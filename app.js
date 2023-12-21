@@ -42,6 +42,9 @@ app.use("/class", classRoutes);
 const sessionRoutes = require("./routes/session.routes");
 app.use("/session", sessionRoutes);
 
+const imageRoutes = require("./routes/image.routes");
+app.use("/image", imageRoutes);
+
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
 
