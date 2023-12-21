@@ -42,6 +42,9 @@ app.use("/class", classRoutes);
 const sessionRoutes = require("./routes/session.routes");
 app.use("/session", sessionRoutes);
 
+const imageRoutes = require("./routes/image.routes");
+app.use("/image", imageRoutes);
+
 const reviewRoutes = require("./routes/review.routes");
 app.use("/review", reviewRoutes);
 
