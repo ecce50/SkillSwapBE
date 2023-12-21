@@ -10,8 +10,6 @@ router.post('/upload-image', async (req, res) => {
     formData.append('file', req.body.file);
 
 
-
-
     try {
         const cloudinaryRes = await axios.post(
             `https://api.cloudinary.com/v1_1/${cloudinaryCloudName}/image/upload?api_key=${cloudinaryApiKey}&upload_preset=${cloudinaryPresetKey}`,
