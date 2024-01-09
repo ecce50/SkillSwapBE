@@ -30,6 +30,7 @@ const userSchema = new Schema({
   },
   userImage: {
     type: String,
+    default: "",
   },
   pointsBalance: {
     type: Number,
