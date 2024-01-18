@@ -32,6 +32,10 @@ router.put("/update", authenticateUser, async (req, res) => {
   const updatedFields = req.body;
    const userId = updatedFields.userId;
 
+
+
+   
+
   try {
     console.log("User ID in the try of the update route ", userId);
         console.log("Updated fields in the try of the update route ", updatedFields);
