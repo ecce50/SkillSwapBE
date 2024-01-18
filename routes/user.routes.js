@@ -28,9 +28,9 @@ router.put("/add-skill", authenticateUser, async (req, res) => {
 });
 
 // Update user profile
-router.patch("/update", authenticateUser, async (req, res) => {
-  const userId = req.body.userId;
+router.put("/update", authenticateUser, async (req, res) => {
   const updatedFields = req.body;
+   const userId = updatedFields.userId;
 
   try {
     console.log("User ID in the try of the update route ", userId);
