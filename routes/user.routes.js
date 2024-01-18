@@ -32,6 +32,10 @@ router.put("/update", authenticateUser, async (req, res) => {
   const updatedFields = req.body;
    const userId = updatedFields.userId;
 
+
+
+   
+
   try {
     console.log("User ID in the try of the update route ", userId);
         console.log("Updated fields in the try of the update route ", updatedFields);
@@ -53,6 +57,7 @@ router.put("/update", authenticateUser, async (req, res) => {
   }
 });
 
+/*
 router.put("/update-profile", authenticateUser, async (req, res) => {
   const { userId } = req.user;
   const { email, userImage } = req.body;
@@ -76,5 +81,6 @@ router.put("/update-profile", authenticateUser, async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 });
+*/
 
 module.exports = router;

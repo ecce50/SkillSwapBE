@@ -69,20 +69,20 @@ router.put("/:sessionId", authenticateUser, async (req, res) => {
 
 })
 
-/*-------------------------------------DELETE Route to Session DELETE-------------------------------------------------
+/*-------------------------------------DELETE Route to Session DELETE-------------------------------------------------*/
 
-router.delete("/:sessionId", authenticateUser, async (req.res) => {
+router.delete("/:sessionId", authenticateUser, async (req, res) => {
 
     try {
-
+        await Session.findByIdAndDelete(req.params.sessionId);
         
     } catch (error) {
-        console.log("error in Session Delete route:", error)
+        console.log("error in Session Delete route:", error);
         res.status(500).json(error);
     }
 
-})
-*/
+});
+
 
 
 
