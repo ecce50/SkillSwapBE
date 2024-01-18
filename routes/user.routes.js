@@ -53,6 +53,7 @@ router.patch("/update", authenticateUser, async (req, res) => {
   }
 });
 
+/*
 router.put("/update-profile", authenticateUser, async (req, res) => {
   const { userId } = req.user;
   const { email, userImage } = req.body;
@@ -76,5 +77,6 @@ router.put("/update-profile", authenticateUser, async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 });
+*/
 
 module.exports = router;
