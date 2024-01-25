@@ -51,30 +51,6 @@ router.get("/sessions", authenticateUser, async (req, res) => {
     }
 })
 
-/*-----------------------------------GET route to fetch session ID------------------------------------------------ */
-
-router.get("/sessions/:sessionId", authenticateUser, async (req, res) => {
-
-    try {
-        const sessionId = req.params.sessionId;
-        console.log("Received session ID:", sessionId);
-        const session = await Session.findById(sessionId);
-
-
-
-        if (!session) {
-            return res.status(404).json({error: "Session not found"});
-        }
-
-        res.status(200).json({session: session});
-
-
-    } catch (error) {
-        console.error("Error fetching session by ID:", error);
-    }
-
-})
-
 
 /*------------------------------------Put Route to Session UPDATE--------------------------------------------------
 
@@ -97,10 +73,13 @@ router.put("/:sessionId", authenticateUser, async (req, res) => {
 
 /*-------------------------------------DELETE Route to Session DELETE-------------------------------------------------*/
 
-router.delete("/:sessionId", authenticateUser, async (req, res) => {
+router.delete("/delete-session/:id", authenticateUser, async (req, res) => {
+
+    const {id} = req.params;
+    console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", id);
 
     try {
-        await Session.findByIdAndDelete(req.params.sessionId);
+        await Session.findByIdAndDelete({_id: id});
         
     } catch (error) {
         console.error("error in Session Delete route:", error);
