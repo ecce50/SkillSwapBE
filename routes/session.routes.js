@@ -40,7 +40,7 @@ router.get("/sessions", authenticateUser, async (req, res) => {
         const classId = req.query.classId;
 
         const sessions = await Session.find({classId: classId});
-        console.log("These are the sessions: ", sessions);
+        console.log("Get sessions route: ", sessions);
 
 
         res.status(200).json({ sessions: sessions });
@@ -74,18 +74,19 @@ router.put("/:sessionId", authenticateUser, async (req, res) => {
 /*-------------------------------------DELETE Route to Session DELETE-------------------------------------------------*/
 
 router.delete("/delete-session/:id", authenticateUser, async (req, res) => {
+  const { id } = req.params;
+  console.log("Delete sessions route: ", id);
 
-    const {id} = req.params;
-    console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", id);
+  try {
+    await Session.findByIdAndDelete({ _id: id });
+    console.log("Session deleted successfully");
 
-    try {
-        await Session.findByIdAndDelete({_id: id});
-        
-    } catch (error) {
-        console.error("error in Session Delete route:", error);
-        res.status(500).json(error);
-    }
-
+    // Send a success response to the client
+    res.status(204).end(); // 204 No Content is appropriate for a successful DELETE
+  } catch (error) {
+    console.error("Error in Session Delete route:", error);
+    res.status(500).json(error);
+  }
 });
 
 
