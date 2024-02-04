@@ -46,18 +46,18 @@ router.get("/classes", authenticateUser, async (req, res) => {
 /*-------------------------------- DELETE route delete a class ------------------------------------------------------------*/
 
 router.delete("/delete-class/:id", authenticateUser, async (req, res) => {
+  const { id } = req.params;
+  console.log("Delete class route: ", id);
 
-  const {id} = req.params;
-  console.log("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee", id);
-
-  try{
-    await Class.findByIdAndDelete({_id: id});
-
+  try {
+    await Class.findByIdAndDelete({ _id: id });
+    console.log("Class deleted successfully: ", id);
+    res.status(200).json({ message: "Class deleted successfully" });
   } catch (error) {
-    console.error("error in Class Delete route:", error);
+    console.error("Error in Class Delete route:", error);
     res.status(500).json(error);
   }
+});
 
-})
 
 module.exports = router;
