@@ -54,7 +54,7 @@ router.get("/sessions", authenticateUser, async (req, res) => {
 
 /*------------------------------------Put Route to Session UPDATE--------------------------------------------------
 
-router.put("/:sessionId", authenticateUser, async (req, res) => {
+router.put("update-session/:id", authenticateUser, async (req, res) => {
 
     try {
         const payload = req.body
