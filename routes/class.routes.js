@@ -59,5 +59,38 @@ router.delete("/delete-class/:id", authenticateUser, async (req, res) => {
   }
 });
 
+/*---------------------------------------- PUT route to class UPDATE ------------------------------------------------*/
+
+router.put("/update-class/:id", authenticateUser, async (req, res) => {
+  const { userId } = req.user;
+  const { id } = req.params; // Extract classId from the request parameters
+
+  try {
+    const updatedFields = req.body; // Extract all fields to update from the request body
+
+    // Check if the user is the teacher of the class
+    const classToUpdate = await Class.findOne({ _id: id, teacherId: userId });
+
+    if (!classToUpdate) {
+      return res.status(404).json({ message: "Class not found" });
+    }
+
+    // Update each field in the class object
+    Object.keys(updatedFields).forEach((key) => {
+      classToUpdate[key] = updatedFields[key];
+    });
+
+    // Save the updated class
+    await classToUpdate.save();
+
+    res
+      .status(200)
+      .json({ message: "Class updated successfully", class: classToUpdate });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
 
 module.exports = router;
