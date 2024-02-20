@@ -55,7 +55,6 @@ router.put("/update", authenticateUser, async (req, res) => {
 
 
 // GET route to find a teacher's details
-
 router.get("/userinfo", authenticateUser, async (req, res) => {
   try {
     const teacherId = req.query.teacherId;
@@ -67,6 +66,11 @@ router.get("/userinfo", authenticateUser, async (req, res) => {
     res.status(200).json({ teacher: teacher });
   } catch (error) {
     console.error("Error fetching teacher:", error);
+    // Handle the error here, you might want to send an error response
+    res.status(500).json({ error: "Error fetching teacher" });
+  }
+});
+
 
 /*--------------------------------------------- DELETE User --------------------------------------------------*/
 
