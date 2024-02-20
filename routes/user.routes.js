@@ -53,6 +53,21 @@ router.put("/update", authenticateUser, async (req, res) => {
   }
 });
 
+
+// GET route to find a teacher's details
+
+router.get("/userinfo", authenticateUser, async (req, res) => {
+  try {
+    const teacherId = req.query.teacherId;
+    console.log("THIS IS THE TEACHERID BEING PASSED ", teacherId);
+
+    const teacher = await User.findOne({ _id: teacherId });
+    console.log("These are the classes: ", teacher);
+
+    res.status(200).json({ teacher: teacher });
+  } catch (error) {
+    console.error("Error fetching teacher:", error);
+
 /*--------------------------------------------- DELETE User --------------------------------------------------*/
 
 router.delete("/delete-user/:id", authenticateUser, async (req, res) => {
@@ -65,9 +80,9 @@ router.delete("/delete-user/:id", authenticateUser, async (req, res) => {
     res.status(200).json({ message: "User deleted successfully" });
   } catch (error) {
     console.error("Error in User Delete route:", error);
+
     res.status(500).json(error);
   }
 });
-
 
 module.exports = router;
