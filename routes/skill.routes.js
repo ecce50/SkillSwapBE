@@ -89,4 +89,20 @@ router.get("/skills", authenticateUser, async (req, res) => {
   }
 });
 
+
+/*------------------------------------------ GET route to fetch A skill by skillId -------------------------------------*/
+router.get("/skill-info/:id", authenticateUser, async (req, res) => {
+  try {
+    const skillId = req.params.id;
+    const skill = await Skill.findById(skillId);
+    console.log("Skill:", skill); // Log the skills array
+    res.header("Content-Type", "application/json");
+    res.status(200).json({ skill });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+
 module.exports = router;

@@ -9,6 +9,7 @@ require("./db");
 // https://www.npmjs.com/package/express
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 
 const app = express();
 
@@ -48,6 +49,13 @@ app.use("/image", imageRoutes);
 const reviewRoutes = require("./routes/review.routes");
 app.use("/review", reviewRoutes);
 
+// Serve static files from the build folder
+app.use(express.static(path.join(__dirname, "../client/dist")));
+
+// Serve the index.html file for all other routes
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/dist", "index.html"));
+});
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
