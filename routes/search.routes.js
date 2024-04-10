@@ -2,6 +2,8 @@ const router = require("express").Router();
 const Skill = require("../models/Skill.model");
 const Class = require("../models/Class.model");
 
+/*--------------------------------------------------------GET route for serach-results listing---------------------------------------------------*/
+
 router.get("/", async (req, res) => {
   const query = req.query.title;
 
