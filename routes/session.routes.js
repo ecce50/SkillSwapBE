@@ -52,7 +52,7 @@ router.get("/sessions", authenticateUser, async (req, res) => {
 })
 
 
-/*------------------------------------Put Route to Session UPDATE--------------------------------------------------
+/*------------------------------------Put Route to Session UPDATE--------------------------------------------------*/
 
 router.put("update-session/:id", authenticateUser, async (req, res) => {
 
@@ -69,7 +69,6 @@ router.put("update-session/:id", authenticateUser, async (req, res) => {
     }
 
 })
-*/
 
 /*-------------------------------------DELETE Route to Session DELETE-------------------------------------------------*/
 
