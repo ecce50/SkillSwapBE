@@ -2,7 +2,7 @@ const { Schema, model } = require("mongoose");
 
 const userSchema = new Schema({
   firstname: {
-    type: String, 
+    type: String,
     default: "Maria",
     // required: true,
     trim: true,
@@ -49,6 +49,12 @@ const userSchema = new Schema({
   source: {
     type: String,
   },
+  attendingSessions: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Session",
+    },
+  ],
   messages: [
     {
       messageId: String,

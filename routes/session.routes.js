@@ -21,6 +21,7 @@ try {
         status: payload.status,
         pointsCost: payload.pointsCost,
         classId: payload.classId,
+        maxAttendees: payload.maxAttendees,
     });
 
     console.log("Session created", createSession);
