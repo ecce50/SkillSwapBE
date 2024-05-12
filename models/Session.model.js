@@ -4,7 +4,7 @@ const sessionSchema = new Schema({
   classId: {
     type: Schema.Types.ObjectId,
     ref: "Class",
-    },
+  },
   date: {
     type: Date,
   },
@@ -20,12 +20,20 @@ const sessionSchema = new Schema({
   pointsCost: {
     type: Number,
   },
+  maxAttendees: {
+    type: Number,
+  },
+  signedUp: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
   //   description: {
   //     type: String,
   //     trim: true,
   //   },
-},
-);
+});
 
 const Session = model("Session", sessionSchema);
 
