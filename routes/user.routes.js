@@ -28,7 +28,7 @@ router.put("/add-skill", authenticateUser, async (req, res) => {
 });
 
 // Update user profile
-router.put("/update", authenticateUser, async (req, res) => {
+router.put("/update-user", authenticateUser, async (req, res) => {
   const updatedFields = req.body;
    const userId = updatedFields.userId;
 
