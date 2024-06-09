@@ -49,12 +49,13 @@ const userSchema = new Schema({
   source: {
     type: String,
   },
-  attendingSessions: [
-    {
+  attendingSessions: {
+    type: [{
       type: Schema.Types.ObjectId,
       ref: "Session",
-    },
-  ],
+    }],
+    default: []
+  },
   messages: [
     {
       messageId: String,
