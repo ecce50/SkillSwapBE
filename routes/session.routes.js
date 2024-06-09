@@ -8,20 +8,22 @@ router.post("/session-creation", authenticateUser, async (req, res) => {
   const payload = req.body;
 
   try {
+    // Assuming payload.date is in DD-MM-YYYY format and payload.time is in HH:MM format
     const [day, month, year] = payload.date.split("-");
-      const createDate = new Date(day, month - 1, `202${year}`);
-    //   let adjustedYear;
-    //   if (year.length === 2) {
-    //     adjustedYear = `20${year}`; // Convert two-digit year to four-digit
-    //   } else {
-    //     adjustedYear = year; // Use the four-digit year as is
-    //   }
-    //   const createDate = new Date(adjustedYear, month - 1, day);
-   
+    const formattedDate = `${year}-${month}-${day}`;
+    const createDate = new Date(formattedDate);
+
+    // Parse the time string (HH:MM)
+    const [hours, minutes] = payload.time.split(":");
+    createDate.setUTCHours(hours, minutes);
+
+    if (isNaN(createDate.getTime())) {
+      throw new Error("Invalid date or time format");
+    }
+
     const createSession = await Session.create({
-      date: createDate,
-      // time: new Date (payload.time),
       time: payload.time,
+      date: createDate,
       status: payload.status,
       pointsCost: payload.pointsCost,
       classId: payload.classId,
@@ -38,6 +40,39 @@ router.post("/session-creation", authenticateUser, async (req, res) => {
     res.status(500).json(error);
   }
 });
+
+
+//   try {
+//     const [day, month, year] = payload.date.split("-");
+//       const createDate = new Date(day, month - 1, `202${year}`);
+//     //   let adjustedYear;
+//     //   if (year.length === 2) {
+//     //     adjustedYear = `20${year}`; // Convert two-digit year to four-digit
+//     //   } else {
+//     //     adjustedYear = year; // Use the four-digit year as is
+//     //   }
+//     //   const createDate = new Date(adjustedYear, month - 1, day);
+
+//     const createSession = await Session.create({
+//       date: createDate,
+//       // time: new Date (payload.time),
+//       time: payload.time,
+//       status: payload.status,
+//       pointsCost: payload.pointsCost,
+//       classId: payload.classId,
+//       maxAttendees: payload.maxAttendees,
+//     });
+
+//     console.log("Session created", createSession);
+
+//     res
+//       .status(201)
+//       .json({ message: "Session created", session: createSession });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json(error);
+//   }
+// });
 
 /*---------------------------------GET route to fetch Sessions for a Class -------------------------------------- */
 
