@@ -92,23 +92,56 @@ router.get("/sessions", authenticateUser, async (req, res) => {
 
 /*------------------------------------Put Route to Session UPDATE--------------------------------------------------*/
 
-router.put("/update-session/:id", authenticateUser, async (req, res) => {
+router.put("/update-session/", authenticateUser, async (req, res) => {
+  const updatedFields = req.body;
+  const sessionId = req.body.sessionId;
+
   try {
-    const payload = req.body;
+    console.log("Session ID in the try of the update route ", sessionId);
+    console.log(
+      "Updated fields in the try of the update route ",
+      updatedFields
+    );
+
     const updatedSession = await Session.findByIdAndUpdate(
-      req.params.sessionId,
-      payload,
+      sessionId,
+      { $set: updatedFields },
       { new: true }
     );
 
-    res
-      .status(202)
-      .json({ message: "Session Updated", session: updatedSession });
+    if (updatedSession) {
+      res
+        .status(200)
+        .json({
+          message: "Session updated successfully",
+          session: updatedSession,
+        });
+    } else {
+      res.status(404).json({ message: "Session not found" });
+    }
   } catch (error) {
-    console.log("update session route error:", error);
+    console.error(error);
     res.status(500).json(error);
   }
 });
+
+// router.put("/update-session/:id", authenticateUser, async (req, res) => {
+//   try {
+//     const payload = req.body;
+//     const updatedSession = await Session.findByIdAndUpdate(
+//       req.params.sessionId,
+//       payload,
+//       { new: true }
+//     );
+
+//     res
+//       .status(202)
+//       .json({ message: "Session Updated", session: updatedSession });
+//   } catch (error) {
+//     console.log("update session route error:", error);
+//     res.status(500).json(error);
+//   }
+// });
 
 /*-------------------------------------DELETE Route to Session DELETE-------------------------------------------------*/
 
