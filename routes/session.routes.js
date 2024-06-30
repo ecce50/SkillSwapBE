@@ -125,6 +125,64 @@ router.put("/update-session/", authenticateUser, async (req, res) => {
   }
 });
 
+router.patch("/add-attendee/", authenticateUser, async (req, res) => {
+  const updatedFields = req.body;
+  const sessionId = req.body.sessionId;
+
+  try {
+    console.log("Session ID in the try of the update route ", sessionId);
+    console.log(
+      "Updated fields in the try of the update route ",
+      updatedFields
+    );
+
+    const updatedSession = await Session.findByIdAndUpdate(
+      sessionId,
+      { $addToSet: updatedFields },
+      { new: true }
+    );
+
+    if (updatedSession) {
+      res.status(200).json({
+        message: "Session updated successfully",
+        session: updatedSession,
+      });
+    } else {
+      res.status(404).json({ message: "Session not found" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json(error);
+  }
+});
+
+router.patch("/remove-attendee/", authenticateUser, async (req, res) => {
+  const { signedUp, sessionId } = req.body;
+
+  try {
+    console.log("Session ID in the try of the remove route ", sessionId);
+    console.log("User ID to remove from signedUp array ", signedUp);
+
+    const updatedSession = await Session.findByIdAndUpdate(
+      sessionId,
+      { $pull: { signedUp: signedUp } },
+      { new: true }
+    );
+
+    if (updatedSession) {
+      res.status(200).json({
+        message: "Session updated successfully",
+        session: updatedSession,
+      });
+    } else {
+      res.status(404).json({ message: "Session not found" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json(error);
+  }
+});
+
 // router.put("/update-session/:id", authenticateUser, async (req, res) => {
 //   try {
 //     const payload = req.body;
