@@ -5,6 +5,10 @@ const sessionSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "Class",
   },
+  teacherId: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
   date: {
     type: Date,
   },

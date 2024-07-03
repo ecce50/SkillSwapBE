@@ -4,7 +4,7 @@ const { authenticateUser } = require("../middlewares/jwt.middleware");
 
 /*------------------------------------ POST route to Session creation ---------------------------------------------*/
 
-router.post("/session-creation", authenticateUser, async (req, res) => {
+router.post("/create-session", authenticateUser, async (req, res) => {
   const payload = req.body;
 
   try {
@@ -27,6 +27,7 @@ router.post("/session-creation", authenticateUser, async (req, res) => {
       status: payload.status,
       pointsCost: payload.pointsCost,
       classId: payload.classId,
+      teacherId: payload.teacherId,
       maxAttendees: payload.maxAttendees,
     });
 
