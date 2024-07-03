@@ -17,7 +17,7 @@ router.get("/reviews", async (req, res) => {
   }
 });
 
-router.post("/review-creation", authenticateUser, async (req, res) => {
+router.post("/create-review", authenticateUser, async (req, res) => {
   const payload = req.body;
 
   try {
