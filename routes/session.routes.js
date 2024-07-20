@@ -144,7 +144,7 @@ router.patch("/remove-attendee/", authenticateUser, async (req, res) => {
 });
 
 /*-------------------------------------DELETE Route to Session DELETE-------------------------------------------------*/
-
+// adding comment to make new push - delete after
 router.delete("/delete-session/:id", authenticateUser, async (req, res) => {
   const { id } = req.params;
   console.log("Delete sessions route: ", id);
