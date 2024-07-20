@@ -10,12 +10,12 @@ router.post("/create-session", authenticateUser, async (req, res) => {
   try {
 
     // Parse the time string (HH:MM)
-    const [hours, minutes] = payload.time.split(":");
+    // const [hours, minutes] = payload.time.split(":");
     //createDate.setUTCHours(hours, minutes);
 
     const createSession = await Session.create({
-      time: payload.time,
-      date: payload.date,
+      // time: payload.time,
+      dateTime: payload.dateTime,
       status: payload.status,
       pointsCost: payload.pointsCost,
       classId: payload.classId,
@@ -144,7 +144,7 @@ router.patch("/remove-attendee/", authenticateUser, async (req, res) => {
 });
 
 /*-------------------------------------DELETE Route to Session DELETE-------------------------------------------------*/
-
+// adding comment to make new push - delete after
 router.delete("/delete-session/:id", authenticateUser, async (req, res) => {
   const { id } = req.params;
   console.log("Delete sessions route: ", id);
