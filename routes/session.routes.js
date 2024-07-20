@@ -10,12 +10,12 @@ router.post("/create-session", authenticateUser, async (req, res) => {
   try {
 
     // Parse the time string (HH:MM)
-    const [hours, minutes] = payload.time.split(":");
+    // const [hours, minutes] = payload.time.split(":");
     //createDate.setUTCHours(hours, minutes);
 
     const createSession = await Session.create({
-      time: payload.time,
-      date: payload.date,
+      // time: payload.time,
+      dateTime: payload.dateTime,
       status: payload.status,
       pointsCost: payload.pointsCost,
       classId: payload.classId,

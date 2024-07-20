@@ -9,12 +9,12 @@ const sessionSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
   },
-  date: {
+  dateTime: {
     type: Date,
   },
-  time: {
-    type: String,
-  },
+  // time: {
+  //   type: String,
+  // },
   level: {
     type: String,
     enum: ["Everyone", "Beginner", "Intermediate", "Advanced"],
