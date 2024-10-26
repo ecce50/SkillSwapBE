@@ -12,11 +12,15 @@ router.post("/class-creation", authenticateUser, async (req, res) => {
     console.log("req.user.id at class creation: ", userId);
     console.log("Create class payload:", payload);
     const createdClass = await Class.create({
-      source: "class",
-      title: payload.title,
       teacherId: userId,
-      description: payload.description,
       skillId: payload.skillId,
+      title: payload.title,
+      source: "class",
+      // classLocation: from leaflet.js
+      classDuration: payload.classDuration,
+      description: payload.description,
+      level: payload.level,
+      classImage: payload.classImage,
     });
     res.status(201).json({ message: "Class created", class: createdClass });
   } catch (error) {

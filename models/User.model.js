@@ -12,23 +12,39 @@ const userSchema = new Schema({
     // required: true,
     trim: true,
   },
+  username: {
+    type: String,
+    unique: true,
+    trim: true,
+    maxlength: 20,
+    minlength: 3,
+  },
   password: {
     type: String,
     required: true,
     trim: true,
+    minlength: 4,
+    // validate: {
+    //   validator: function (v) {
+    //     return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
+    //       v
+    //     );
+    //   },
+    //   message: (props) => `${props.value} is not a valid password!`,
+    // },
   },
   email: {
     type: String,
     lowercase: true,
     required: true,
     trim: true,
+    unique: true,
   },
-  address: {
-    addressLine1: { type: String },
-    addressLine2: { type: String },
-    city: { type: String },
-    postcode: { type: String },
-  },
+
+  // This isn't a String, but a Point object. See the print screen in Miro and the chatGPT conversation
+  // userLocation: {
+  //   type: Point,
+  // },
   profileImage: {
     type: String,
     default: "",
@@ -37,9 +53,6 @@ const userSchema = new Schema({
     type: Number,
     default: 0,
   },
-  // creditCardRef: {
-  // type: String,
-  // },
   skills: [
     {
       type: Schema.Types.ObjectId,
@@ -50,11 +63,13 @@ const userSchema = new Schema({
     type: String,
   },
   attendingSessions: {
-    type: [{
-      type: Schema.Types.ObjectId,
-      ref: "Session",
-    }],
-    default: []
+    type: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Session",
+      },
+    ],
+    default: [],
   },
   messages: [
     {
