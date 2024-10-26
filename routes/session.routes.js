@@ -8,19 +8,19 @@ router.post("/create-session", authenticateUser, async (req, res) => {
   const payload = req.body;
 
   try {
-
     // Parse the time string (HH:MM)
     // const [hours, minutes] = payload.time.split(":");
     //createDate.setUTCHours(hours, minutes);
 
     const createSession = await Session.create({
-      // time: payload.time,
-      dateTime: payload.dateTime,
-      status: payload.status,
-      pointsCost: payload.pointsCost,
-      classId: payload.classId,
       teacherId: payload.teacherId,
+      classId: payload.classId,
+      dateTime: payload.dateTime,
+      pointsCost: payload.pointsCost,
+      // sessionLocation: from leaflet.js
+      sessionDuration: payload.sessionDuration,
       maxAttendees: payload.maxAttendees,
+      notes: payload.notes,
     });
 
     console.log("Session created", createSession);
@@ -70,12 +70,10 @@ router.put("/update-session/", authenticateUser, async (req, res) => {
     );
 
     if (updatedSession) {
-      res
-        .status(200)
-        .json({
-          message: "Session updated successfully",
-          session: updatedSession,
-        });
+      res.status(200).json({
+        message: "Session updated successfully",
+        session: updatedSession,
+      });
     } else {
       res.status(404).json({ message: "Session not found" });
     }

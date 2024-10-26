@@ -1,34 +1,49 @@
 const { Schema, model } = require("mongoose");
 
 const classSchema = new Schema({
+  // Whoever created the Class
   teacherId: {
     type: Schema.Types.ObjectId,
     ref: "User",
   },
+  // The Skill to which the Class belongs
   skillId: {
     type: Schema.Types.ObjectId,
     ref: "Skill",
   },
+  // The name of the Class
   title: {
     type: String,
     // required: true,
     trim: true,
   },
+  // Used to differentiate between Class and Skill for search results
   source: {
     type: String,
   },
-  duration: {
+  // Where the Class is taking place (See Miro and chatGPT about leaflet.js)
+  classLocation: {
+    type: String,
+  },
+  // How long the Class lasts in minutes
+  classDuration: {
     type: Number,
   },
-  location: {
-    type: String,
-  }, //GeoJSON for when we add location functionality
+  // What the Class is about
   description: {
     type: String,
     // required: true,
     trim: true,
   },
-  imageURL: {
+  // How advanced the Class is
+  level: {
+    type: String,
+    enum: ["Everyone", "Beginner", "Intermediate", "Advanced"],
+    default: "Everyone",
+    // required: true,
+  },
+  // An image that decorates the SkillClasses component
+  classImage: {
     type: String,
     // required: true,
     trim: true,

@@ -11,10 +11,11 @@ router.post("/create-skill", authenticateUser, async (req, res) => {
     const userId = req.user.userId;
     console.log("req.user.id at skill creation: ", userId)
     const createdSkill = await Skill.create({
-      source: "skill",
-      title: payload.title,
       teacherId: userId,
+      title: payload.title,
+      source: "skill",
       description: payload.description,
+      skillImage: payload.skillImage,
     });
     res.status(201).json({ message: "Skill created", skill: createdSkill });
   } catch (error) {

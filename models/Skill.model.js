@@ -10,6 +10,7 @@ const skillSchema = new Schema({
     // required: true,
     trim: true,
   },
+  // Used to differentiate between Class and Skill for search results
   source: {
     type: String,
   },
@@ -18,7 +19,7 @@ const skillSchema = new Schema({
     // required: true,
     trim: true,
   },
-  imageURL: {
+  skillImage: {
     type: String,
     // required: true,
     trim: true,
