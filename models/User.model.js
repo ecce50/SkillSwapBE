@@ -29,7 +29,7 @@ const userSchema = new Schema({
     city: { type: String },
     postcode: { type: String },
   },
-  imageURL: {
+  profileImage: {
     type: String,
     default: "",
   },
