@@ -43,7 +43,7 @@ const classSchema = new Schema({
     // required: true,
   },
   // An image that decorates the SkillClasses component
-  classImage: {
+  imageUrl: {
     type: String,
     // required: true,
     trim: true,

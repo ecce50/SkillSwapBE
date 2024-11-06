@@ -48,7 +48,7 @@ const userSchema = new Schema({
   // userLocation: {
   //   type: Point,
   // },
-  profileImage: {
+  imageUrl: {
     type: String,
     default: "",
   },
