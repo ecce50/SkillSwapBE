@@ -11,7 +11,7 @@ const skillSchema = new Schema({
     trim: true,
   },
   // Used to differentiate between Class and Skill for search results
-  source: {
+  objectType: {
     type: String,
   },
   description: {

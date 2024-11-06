@@ -19,6 +19,9 @@ const userSchema = new Schema({
     maxlength: 20,
     minlength: 3,
   },
+  objectType: {
+    type: String,
+  },
   password: {
     type: String,
     required: true,
