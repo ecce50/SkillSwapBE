@@ -19,7 +19,7 @@ const skillSchema = new Schema({
     // required: true,
     trim: true,
   },
-  skillImage: {
+  imageUrl: {
     type: String,
     // required: true,
     trim: true,
