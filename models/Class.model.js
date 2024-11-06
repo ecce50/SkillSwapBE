@@ -18,7 +18,7 @@ const classSchema = new Schema({
     trim: true,
   },
   // Used to differentiate between Class and Skill for search results
-  source: {
+  objectType: {
     type: String,
   },
   // Where the Class is taking place (See Miro and chatGPT about leaflet.js)

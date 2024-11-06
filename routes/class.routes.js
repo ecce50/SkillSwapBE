@@ -15,7 +15,7 @@ router.post("/class-creation", authenticateUser, async (req, res) => {
       teacherId: userId,
       skillId: payload.skillId,
       title: payload.title,
-      source: "class",
+      objectType: "class",
       // classLocation: from leaflet.js
       classDuration: payload.classDuration,
       description: payload.description,

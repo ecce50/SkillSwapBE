@@ -13,7 +13,7 @@ router.post("/create-skill", authenticateUser, async (req, res) => {
     const createdSkill = await Skill.create({
       teacherId: userId,
       title: payload.title,
-      source: "skill",
+      objectType: "skill",
       description: payload.description,
       skillImage: payload.skillImage,
     });
