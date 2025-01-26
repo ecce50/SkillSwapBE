@@ -28,13 +28,14 @@ router.put("/add-skill", authenticateUser, async (req, res) => {
 });
 
 // Update user profile
-router.put("/update-user", authenticateUser, async (req, res) => {
+router.put("/update-user/:id", authenticateUser, async (req, res) => {
   const updatedFields = req.body;
-   const userId = updatedFields.userId;
+   const userId = req.params.id;
 
   try {
     console.log("User ID in the try of the update route ", userId);
         console.log("Updated fields in the try of the update route ", updatedFields);
+        console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",req.params);
 
     const updatedUser = await User.findByIdAndUpdate(
       userId,
@@ -52,6 +53,8 @@ router.put("/update-user", authenticateUser, async (req, res) => {
     res.status(500).json(error);
   }
 });
+
+
 
 
 // GET route to find a teacher's details
