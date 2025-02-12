@@ -25,9 +25,7 @@ router.post("/create-session", authenticateUser, async (req, res) => {
 
     console.log("Session created", createSession);
 
-    res
-      .status(201)
-      .json({ message: "Session created", session: createSession });
+    res.status(201).json({ message: "Session created", session: createSession });
   } catch (error) {
     console.error(error);
     res.status(500).json(error);
@@ -43,7 +41,8 @@ router.get("/sessions", authenticateUser, async (req, res) => {
     const sessions = await Session.find({ classId: classId });
     console.log("Get sessions route: ", sessions);
 
-    res.status(200).json({ sessions: sessions });
+    /* res.status(200).json({ sessions: sessions }); */
+    res.status(200).json(sessions);
   } catch (error) {
     console.error("Error fetching sessions:", error);
     res.status(500).json(error);
